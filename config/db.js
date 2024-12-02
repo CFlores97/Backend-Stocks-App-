@@ -19,8 +19,8 @@ async function connect() {
     }
 }
 
-const getDb = () => {
+const getDB = () => {
     return client.db();
 }
 
-module.exports = {connect, getDb}
+module.exports = {connect, getDB}

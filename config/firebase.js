@@ -1,5 +1,8 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+const firebase = require('firebase/compat/app')
+require('firebase/compat/auth');
+const dotenv = require('dotenv');
+dotenv.config();
+
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -10,7 +13,10 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID,
 };
 
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+console.log('Firebase App Initialized:', firebaseApp.name);
 
-const firebaseApp = initializeApp(firebaseConfig);
-export const auth = getAuth(firebaseApp);
-export default firebaseApp;
+const auth = firebaseApp.auth();
+console.log('Auth Instance Initialized:', auth);
+
+module.exports = {auth, firebaseApp};

@@ -1,7 +1,3 @@
-/*import axios from 'axios';
-const axios = require('axios');
-const path = require('path');
-const port = 3000;*/
 const express = require('express'); 
 const dotenv = require('dotenv'); 
 const { connect } = require('./config/db'); 
@@ -21,6 +17,13 @@ app.use('/auth', authRoutes);
 app.get('/', (req, res) => {
   res.send('Servidor corriendo correctamente.');
 });
+
+// en caso de un error
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Algo salió mal!');
+});
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
